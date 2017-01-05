@@ -1,14 +1,38 @@
-{% extends 'forum/base.html' %}
+{% extends 'forum/base.html' %} {% block content %}
 
-{% block content %}
-    {% for post in posts %}
-        <div class="post">
-            <div class="date">
-                {{ post.published_date }}
+<table class="table forum table-striped">
+    <thead>
+        <tr>
+            <th class="cell-stat">
+                <h2>Title</h2></th>
+            <th class="cell-stat text-center hidden-xs hidden-sm">Date</th>
+            <th class="cell-stat text-center">Comments</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for post in posts %}
+        <tr>
+            <div class="post">
+                <td>
+                    <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+                </td>
+                <td class="text-center hidden-xs hidden-sm">
+                    {{ post.published_date }}
+                </td>
+                <td class="text-center"><a href="{% url 'post_detail' pk=post.pk %}"> {{ post.approved_comments.count }}</a>
+                </td>
             </div>
-            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-            <p>{{ post.text|linebreaksbr }}</p>
-            <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a>
-        </div>
-    {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+<ul class="pager">
+    <li class="next">
+        <a href="#">See all &rarr;</a>
+    </li>
+</ul>
+
 {% endblock %}
