@@ -12,18 +12,22 @@
 
     <tbody>
         {% for post in posts %}
+        {% if post.categories != noot %}
         <tr>
             <div class="post">
                 <td>
-                    <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+                    <h1 class="post-title"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
                 </td>
                 <td class="text-center hidden-xs hidden-sm">
                     {{ post.published_date }}
                 </td>
                 <td class="text-center"><a href="{% url 'post_detail' pk=post.pk %}"> {{ post.approved_comments.count }}</a>
                 </td>
+                <td class="text-center"><a href="{% url 'post_detail' pk=post.pk %}"> {{ post.categories.name }}</a>
+                </td>
             </div>
         </tr>
+        {% endif %}
         {% endfor %}
     </tbody>
 

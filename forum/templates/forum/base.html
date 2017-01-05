@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load staticfiles %} {% load tags %}
 
 <html>
 
@@ -51,7 +51,7 @@
                         <a href="{% url 'post_list' %}">Menu 1</a>
                     </li>
                     <li>
-                        <a href="{% url 'post_list' %}"><span id="delete">Menu 2</span></a>
+                        <a href="{% url 'post_list' %}"><span>Menu 2</span></a>
                     </li>
                     <li>
                         <a href="{% url 'post_list' %}">Menu 3</a>
@@ -84,20 +84,26 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                {% if user.is_authenticated %} Create new post<a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a> {% endif %}
-
-                <div class="content container">
-                    <div class="row">
-                        <div class="col-md-8">
-
-                            {% block content %} {% endblock %}
-
-                        </div>
-                    </div>
+                <div class="post-preview">
+                    {% if user.is_authenticated %} Create new post
+                    <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a> Edit post
+                    <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a> {% endif %}
                 </div>
-
+                <div class="post-preview">
+                      <h3>Categories</h3>
+                      <p>
+                          <ul>
+                          {% get_forum_categories as categories %}
+                          {% for c in categories %}
+                              <li>{{ c }}</li>
+                          {% endfor %}
+                          </ul>
+                      </p>
+                </div>
+                <div class="post-preview">
+                    {% block content %} {% endblock %}
+                </div>
                 <hr>
-
             </div>
         </div>
     </div>

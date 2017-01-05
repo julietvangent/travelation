@@ -1,11 +1,22 @@
 from django.db import models
 from django.utils import timezone
 
+class Category(models.Model):
+    name = models.CharField('name', max_length=100)
+
+    def __str__(self):
+        return '%s' % self.name
+
+    class Meta:
+        verbose_name = 'category'
+        verbose_name_plural = 'categories'
+
 
 class Post(models.Model):
     author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=200)
     text = models.TextField()
+    categories = models.ManyToManyField(Category, blank=True)
     created_date = models.DateTimeField(
             default=timezone.now)
     published_date = models.DateTimeField(
@@ -20,6 +31,7 @@ class Post(models.Model):
 
     def approved_comments(self):
         return self.comments.filter(approved_comment=True)
+
 
 class Comment(models.Model):
     post = models.ForeignKey('forum.Post', related_name='comments')
