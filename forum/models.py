@@ -22,7 +22,21 @@ class Post(models.Model):
 
 
 class DestinationsPost(Post):
-    category = "destinations"
+
+    def __str__(self):
+        return self.title
+
+
+class PracticalPost(Post):
+
+    def __str__(self):
+        return self.title
+
+
+class OtherPost(Post):
+
+    def __str__(self):
+        return self.title
 
 
 class Comment(models.Model):

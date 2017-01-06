@@ -41,7 +41,7 @@
                   <span class="sr-only">Toggle navigation</span>
                   Menu <i class="fa fa-bars"></i>
               </button>
-                <a class="navbar-brand" href="{% url 'post_list' %}">Menu Title</a>
+                <a class="navbar-brand" href="{% url 'post_list' %}">Navigation</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -71,9 +71,9 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="site-heading">
-                        <h1>My WebApp</h1>
+                        <h1>Travelation</h1>
                         <hr class="small">
-                        <span class="subheading">Under Construction</span>
+                        <span class="subheading">Discussion board for travellers</span>
                     </div>
                 </div>
             </div>
@@ -81,17 +81,19 @@
     </header>
 
     <!-- Main Content -->
+    {% if user.is_authenticated %}
+    <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+    <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
+    <p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
+    {% else %}
+    <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a> {% endif %}
+
+
+
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-              <div class="post-preview">
-                  {% if user.is_authenticated %} Create new post
-                  <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a> Edit post
-                  <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a> {% endif %}
-              </div>
-
-
-                    {% block content %} {% endblock %}
+                {% block content %} {% endblock %}
                 <hr>
             </div>
         </div>
@@ -102,7 +104,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <p class="copyright text-muted">Copyright &copy; Your Website 2017</p>
+                    <p class="copyright text-muted">&copy; Travelation 2017</p>
                 </div>
             </div>
         </div>

@@ -1,6 +1,12 @@
 {% extends 'forum/base.html' %} {% block content %}
 
-<h1>Other</h1>
+<div class="post-preview">
+    <h1>Other</h1> {% if user.is_authenticated %}
+    <a href="{% url 'other_post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a> Create new topic in <em>Other</em>
+    <br>
+    <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a> See my post drafts {% else %}
+    <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>{% endif %}
+</div>
 
 <table class="table forum table-striped">
     <thead>
@@ -32,7 +38,7 @@
 
 <ul class="pager">
     <li class="next">
-        <a href="#">See all &rarr;</a>
+        <a href="{% url 'post_list' %}">&larr; Back to homepage</a>
     </li>
 </ul>
 

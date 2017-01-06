@@ -1,17 +1,21 @@
 {% extends 'forum/base.html' %} {% block content %}
 
+<div class="post-preview">
+    <h2>Recent activity per topic</h2>
+</div>
+
 <table class="table forum table-striped">
     <thead>
         <tr>
             <th class="cell-stat">
-                <h2>Title</h2></th>
+                <h2>Destinations</h2></th>
             <th class="cell-stat text-center hidden-xs hidden-sm">Date</th>
             <th class="cell-stat text-center">Comments</th>
         </tr>
     </thead>
 
     <tbody>
-        {% for post in posts %}
+        {% for post in d_posts %}
         <tr>
             <div class="post">
                 <td>
@@ -30,7 +34,75 @@
 
 <ul class="pager">
     <li class="next">
-        <a href="#">See all &rarr;</a>
+        <a href="{% url 'post_list_dest' %}">See all &rarr;</a>
+    </li>
+</ul>
+
+<table class="table forum table-striped">
+    <thead>
+        <tr>
+            <th class="cell-stat">
+                <h2>Practical</h2></th>
+            <th class="cell-stat text-center hidden-xs hidden-sm">Date</th>
+            <th class="cell-stat text-center">Comments</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for post in p_posts %}
+        <tr>
+            <div class="post">
+                <td>
+                    <h1 class="post-title"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+                </td>
+                <td class="text-center hidden-xs hidden-sm">
+                    {{ post.published_date }}
+                </td>
+                <td class="text-center"><a href="{% url 'post_detail' pk=post.pk %}"> {{ post.approved_comments.count }}</a>
+            </div>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+<ul class="pager">
+    <li class="next">
+        <a href="{% url 'post_list_prac' %}">See all &rarr;</a>
+    </li>
+</ul>
+
+<table class="table forum table-striped">
+    <thead>
+        <tr>
+            <th class="cell-stat">
+                <h2>Other</h2></th>
+            <th class="cell-stat text-center hidden-xs hidden-sm">Date</th>
+            <th class="cell-stat text-center">Comments</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for post in o_posts %}
+        <tr>
+            <div class="post">
+                <td>
+                    <h1 class="post-title"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+                </td>
+                <td class="text-center hidden-xs hidden-sm">
+                    {{ post.published_date }}
+                </td>
+                <td class="text-center"><a href="{% url 'post_detail' pk=post.pk %}"> {{ post.approved_comments.count }}</a>
+            </div>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+<ul class="pager">
+    <li class="next">
+        <a href="{% url 'post_list_other' %}">See all &rarr;</a>
     </li>
 </ul>
 
