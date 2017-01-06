@@ -1,13 +1,28 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from .models import Post, Comment, Category
-from .forms import PostForm, CommentForm
+from .models import Post, DestinationsPost, Comment
+from .forms import PostForm, DestPostForm, CommentForm
 from django.contrib.auth.decorators import login_required
 
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
     return render(request, 'forum/post_list.html', {'posts': posts})
+
+
+def post_list_dest(request):
+    d_posts = DestinationsPost.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+    return render(request, 'forum/post_list_dest.html', {'d_posts': d_posts})
+
+
+def post_list_prac(request):
+    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+    return render(request, 'forum/post_list_prac.html', {'posts': posts})
+
+
+def post_list_other(request):
+    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+    return render(request, 'forum/post_list_other.html', {'posts': posts})
 
 
 def post_detail(request, pk):
@@ -27,6 +42,20 @@ def post_new(request):
     else:
         form = PostForm()
     return render(request, 'forum/post_edit.html', {'form': form})
+
+
+def dest_post_new(request):
+    if request.method == "POST":
+        form = DestPostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+
+            post.save()
+            return redirect('dest_post_detail', pk=post.pk)
+    else:
+        form = DestPostForm()
+    return render(request, 'forum/dest_post_edit.html', {'form': form})
 
 
 def post_edit(request, pk):

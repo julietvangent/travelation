@@ -1,5 +1,14 @@
 {% extends 'forum/base.html' %} {% block content %}
 
+<h1>Destinations</h1>
+
+<div class="post-preview">
+    {% if user.is_authenticated %} Create new post
+    <a href="{% url 'dest_post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a> Edit post
+    <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a> {% endif %}
+</div>
+
+
 <table class="table forum table-striped">
     <thead>
         <tr>
@@ -20,7 +29,7 @@
                 <td class="text-center hidden-xs hidden-sm">
                     {{ post.published_date }}
                 </td>
-                <td class="text-center"><a href="{% url 'post_detail' pk=post.pk %}"> {{ post.approved_comments.count }}</a>
+                <td class="text-center"><a href="{% url 'post_detail' pk=post.pk %}"> {{ dest.approved_comments.count }}</a>
             </div>
         </tr>
         {% endfor %}
