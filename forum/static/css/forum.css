@@ -16,11 +16,61 @@
 }
 
 .login-div {
-  background-color: #938492;
+  /*background-color: #938492;*/
   text-align: right;
   display: inline-flex;;
 }
 
 .login-text {
   font-style: italic;
+  margin-left: 10px;
+}
+
+.glyph-margin {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.title-in-table {
+  margin: 0 0 10px;
+  font-weight: 300
+}
+
+.tabwidt-title {
+  width: 60%;
+}
+
+.tabwidt-date {
+  width: 25%;
+}
+
+.tabwidt-comments {
+  width: 15%;
+}
+
+.activity {
+  font-weight: 800;
+  font-family: 'Droid Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.topic-title {
+  font-family: 'Droid Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 600;
+}
+
+.login-edit {
+  color: #696969;
+}
+
+.glyph-extra {
+  color: #696969;
+}
+
+.glyph-extra:hover {
+  color: #005daa;
+  text-decoration: none;
+}
+
+.label-margin {
+  margin-left: 10px;
 }

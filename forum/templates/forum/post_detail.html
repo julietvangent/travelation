@@ -1,46 +1,57 @@
 {% extends 'forum/base.html' %} {% block content %}
 
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-
-<div class="post">
-
-    {% if post.published_date %}
-    <div class="date">
-        {{ post.published_date }}
-    </div>
+<div class="login-div" "post-preview">
+    {% if user.is_authenticated %}
+    <p class="login-text">Hello {{ user.username }} <small class="login-text">(<a href="{% url 'logout' %}">Log out</a>)</small></p>
     {% else %}
-    <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a> {% endif %} {% if user.is_authenticated %}
-    <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-    <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a> {% else %}
-    <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a> {% endif %}
-
-    <h1>{{ post.title }}</h1>
-    <p>{{ post.text|linebreaksbr }}</p>
+    <a href="{% url 'login' %}"><span class="glyphicon glyphicon-lock glyph-margin"></span>
+    </a> <em>Not logged in</em> {% endif %}
 </div>
 
-<hr>
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <div class="post">
+        {% if post.published_date %}
+        <div class="date">
+            {{ post.published_date }}
+        </div>
+        {% else %}
+        <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a><br> {% endif %}
+        <br>
 
-<a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a> {% for comment in post.comments.all %} {% if user.is_authenticated or comment.approved_comment %}
-<div class="comment">
-    <div class="date">
-        {{ comment.created_date }} {% if not comment.approved_comment %}
-        <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
-        <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a> {% endif %}
+        {% if user.is_authenticated %}
+        <a class="glyph-extra" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span><em>Edit</em></a>
+        <a class="glyph-extra" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span><em>Remove</em></a>
+
+        <!--<a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>-->
+        {% endif %}
+
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.text|linebreaksbr }}</p>
     </div>
-    <strong>{{ comment.author }}</strong>
-    <p>{{ comment.text|linebreaks }}</p>
-</div>
-{% endif %} {% empty %}
-<p>No comments here yet :(</p>
-{% endfor %}
 
-<ul class="pager">
-    <li class="next">
-        <a href="{% url 'post_list' %}">&larr; Back to homepage</a>
-    </li>
-</ul>
+    <hr>
 
-<hr>
+    <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a> {% for comment in post.comments.all %}
+    <hr>
+    <div class="comment">
+        <div class="date">
+            {{ comment.created_date }}
+        </div>
+        <strong>{{ comment.author }}</strong>
+        <p>{{ comment.text|linebreaks }}</p>
+    </div>
+    {% empty %}
+    <p>No comments here yet :(</p>
+    {% endfor %}
+
+    <ul class="pager">
+        <li class="next">
+            <a href="{% url 'post_list' %}">&larr; Back to homepage</a>
+        </li>
+    </ul>
+
+    <hr>
 </div>
 
 {% endblock %}

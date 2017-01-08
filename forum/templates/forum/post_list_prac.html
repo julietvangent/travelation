@@ -2,57 +2,53 @@
 
 <div class="login-div" "post-preview">
     {% if user.is_authenticated %}
-    <p class="login-text">Hello {{ user.username }} <small class="login-text">(<a href="{% url 'logout' %}">Log out</a>)</small></p>
+    <p class="login-text">Hello {{ user.username }}<small class="login-text">(<a href="{% url 'logout' %}">Log out</a>)</small></p>
     {% else %}
-    <a href="{% url 'login' %}"><span class="glyphicon glyphicon-lock" style="margin-right: 10px"></span>
-    </a> <em>Not logged in</em> {% endif %}
-  </div>
-
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-<div class="post-preview">
-    <h1>Practical</h1> {% if user.is_authenticated %}
-    <a href="{% url 'prac_post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a> Create new topic in <em>Practical</em>
-    <br>
-    <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a> See my post drafts {% else %}
-    <p class="login-text">Login to create or edit posts</p>{% endif %}
+    <a href="{% url 'login' %}"><span class="glyphicon glyphicon-lock" style="margin-right: 10px"></span></a><em>Not logged in</em> {% endif %}
 </div>
 
-<table class="table forum table-striped">
-    <thead>
-        <tr>
-            <th class="cell-stat">
-                <h2>Title</h2></th>
-            <th class="cell-stat text-center hidden-xs hidden-sm">Date</th>
-            <th class="cell-stat text-center">Comments</th>
-        </tr>
-    </thead>
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <div class="post-preview">
+        <h1 class="activity">Practical</h1> {% if user.is_authenticated %}
+        <a href="{% url 'dest_post_new' %}" class="top-menu glyph-extra"><span class="glyphicon glyphicon-plus"></span><small> Create new topic in <em>Destinations</em></small></a>
+        <br>
+        <a href="{% url 'post_draft_list' %}" class="top-menu glyph-extra"><span class="glyphicon glyphicon-edit"></span><small> See my post drafts</small></a> {% else %}
+        <p class="login-text">Login to create or edit posts</p>{% endif %}
+    </div>
 
-    <tbody>
-        {% for post in posts %}
-        <tr>
-            <div class="post">
-                <td>
-                    <h1 class="post-title"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-                </td>
-                <td class="text-center hidden-xs hidden-sm">
-                    {{ post.published_date }}
-                </td>
-                <td class="text-center"><a href="{% url 'post_detail' pk=post.pk %}"> {{ post.approved_comments.count }}</a>
-            </div>
-        </tr>
-        {% endfor %}
-    </tbody>
+    <table class="table forum table-striped">
+        <thead>
+            <tr>
+                <th class="cell-stat tabwidt-title">
+                    <h3 class="topic-title">Topic</h3></th>
+                <th class="cell-stat tabwidt-date text-center hidden-xs hidden-sm">Date</th>
+                <th class="cell-stat tabwidt-comments text-center">Comments</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in posts %}
+            <tr>
+                <div class="post">
+                    <td>
+                        <h3 class="title-in-table"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
+                    </td>
+                    <td class="text-center hidden-xs hidden-sm">
+                        {{ post.published_date }}
+                    </td>
+                    <td class="text-center"> {{ post.comments.count }}
+                </div>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
-</table>
+    <ul class="pager">
+        <li class="next">
+            <a href="{% url 'post_list' %}">&larr; Back to homepage</a>
+        </li>
+    </ul>
 
-<ul class="pager">
-    <li class="next">
-        <a href="{% url 'post_list' %}">&larr; Back to homepage</a>
-    </li>
-</ul>
-
-
-<hr>
+    <hr>
 </div>
 
 {% endblock %}

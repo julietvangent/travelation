@@ -19,11 +19,11 @@ a, body {
 body {
     font-family: Lora, 'Times New Roman', serif;
     font-size: 20px;
-    -webkit-tap-highlight-color: #0085A1
+    -webkit-tap-highlight-color: #005daa
 }
 
 .intro-header .page-heading .subheading, .intro-header .post-heading .subheading, .intro-header .site-heading .subheading, .navbar-custom, h1, h2, h3, h4, h5, h6 {
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 p {
@@ -36,7 +36,7 @@ p a {
 }
 
 a:focus, a:hover {
-    color: #0085A1
+    color: #005daa
 }
 
 a img:focus, a img:hover {
@@ -123,13 +123,13 @@ hr.small {
         color: #333
     }
     .navbar-custom.is-fixed .navbar-brand:focus, .navbar-custom.is-fixed .navbar-brand:hover {
-        color: #0085A1
+        color: #005daa
     }
     .navbar-custom.is-fixed .nav li a {
         color: #333
     }
     .navbar-custom.is-fixed .nav li a:focus, .navbar-custom.is-fixed .nav li a:hover {
-        color: #0085A1
+        color: #005daa
     }
     .navbar-custom.is-visible {
         -webkit-transform: translate3d(0, 100%, 0);
@@ -217,7 +217,7 @@ hr.small {
 
 .post-preview>a:focus, .post-preview>a:hover {
     text-decoration: none;
-    color: #0085A1
+    color: #005daa
 }
 
 .post-preview>a>.post-title {
@@ -244,7 +244,7 @@ hr.small {
 }
 
 .post-preview>.post-meta>a:focus, .post-preview>.post-meta>a:hover {
-    color: #0085A1;
+    color: #005daa;
     text-decoration: underline
 }
 
@@ -340,7 +340,7 @@ footer .copyright {
 }
 
 .floating-label-form-group-with-focus label {
-    color: #0085A1
+    color: #005daa
 }
 
 form .row:first-child .floating-label-form-group {
@@ -359,8 +359,8 @@ form .row:first-child .floating-label-form-group {
 }
 
 .btn-default:focus, .btn-default:hover {
-    background-color: #0085A1;
-    border: 1px solid #0085A1;
+    background-color: #005daa;
+    border: 1px solid #005daa;
     color: #fff
 }
 
@@ -372,13 +372,13 @@ form .row:first-child .floating-label-form-group {
     font-size: 14px;
     padding: 15px 25px;
     background-color: #fff;
-    border-radius: 0
+    border-radius: 0;
 }
 
 .pager li>a:focus, .pager li>a:hover {
     color: #fff;
-    background-color: #0085A1;
-    border: 1px solid #0085A1
+    background-color: #005daa;
+    border: 1px solid #005daa;
 }
 
 .pager .disabled>a, .pager .disabled>a:focus, .pager .disabled>a:hover, .pager .disabled>span {
@@ -390,13 +390,13 @@ form .row:first-child .floating-label-form-group {
 ::-moz-selection {
     color: #fff;
     text-shadow: none;
-    background: #0085A1
+    background: #005daa;
 }
 
 ::selection {
     color: #fff;
     text-shadow: none;
-    background: #0085A1
+    background: #005daa;
 }
 
 img::selection {

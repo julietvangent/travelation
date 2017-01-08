@@ -1,14 +1,16 @@
-{% extends 'forum/base.html' %}
-
-{% block content %}
+{% extends 'forum/base.html' %} {% block content %}
 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <div class="post-preview">
+        <h1 class="activity">My post drafts</h1>
+    </div>
     {% for post in posts %}
-        <div class="post">
-            <p class="date">created: {{ post.created_date|date:'d-m-Y' }}</p>
-            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-            <p>{{ post.text|truncatechars:200 }}</p>
-        </div>
+    <hr>
+    <div class="post">
+        <p class="date">created: {{ post.created_date|date:'d-m-Y' }}</p>
+        <h3 class="topic-title"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
+        <p>{{ post.text|truncatechars:200 }}</p>
+    </div>
     {% endfor %}
-        <hr>
-        </div>
+    <hr>
+</div>
 {% endblock %}

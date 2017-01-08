@@ -1,28 +1,33 @@
-{% extends "forum/base.html" %}
-
-{% block content %}
+{% extends "forum/base.html" %} {% block content %}
 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-    {% if form.errors %}
-        <p>Your username and password didn't match. Please try again.</p>
-    {% endif %}
+    <div class="post">
+        <h1 class="activity">Login with your username and password</h1>
+        <br>
+    </div>
 
-    <form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-        <table>
-        <tr>
-            <td>{{ form.username.label_tag }}</td>
-            <td>{{ form.username }}</td>
-        </tr>
-        <tr>
-            <td>{{ form.password.label_tag }}</td>
-            <td>{{ form.password }}</td>
-        </tr>
-        </table>
+    <div class="post">
+        {% if form.errors %}
+        <p class="label-margin">Your username and password didn't match. Please try again.</p>
+        {% endif %}
 
-        <input type="submit" value="login" />
-        <input type="hidden" name="next" value="{{ next }}" />
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td><span class="label-margin">{{ form.username.label_tag }}</span></td>
+                    <td><span class="label-margin">{{ form.username }}<span></td>
+                </tr>
+                <tr>
+                    <td><span class="label-margin">{{ form.password.label_tag }}<span></td>
+                    <td><span class="label-margin">{{ form.password }}<span></td>
+                </tr>
+            </table>
+    </div>
+
+    <span class="label-margin"><input type="submit" value="login" /></span>
+    <input type="hidden" name="next" value="{{ next }}" />
     </form>
 
     <hr>
-    </div>
+</div>
 {% endblock %}

@@ -2,121 +2,115 @@
 
 <div class="login-div" "post-preview">
     {% if user.is_authenticated %}
-    <p class="login-text">Hello {{ user.username }} <small class="login-text">(<a href="{% url 'logout' %}">Log out</a>)</small></p>
+    <p class="login-text">Hello {{ user.username }}<small class="login-text">(<a href="{% url 'logout' %}">Log out</a>)</small></p>
     {% else %}
-    <a href="{% url 'login' %}"><span class="glyphicon glyphicon-lock" style="margin-right: 10px"></span>
-    </a> <em>Not logged in</em> {% endif %}
-  </div>
-
-
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-<div class="post-preview">
-    <h2>Recent activity per topic</h2>
+    <a href="{% url 'login' %}"><span class="glyphicon glyphicon-lock" style="margin-right: 10px"></span></a><em>Not logged in</em> {% endif %}
 </div>
 
-<table class="table forum table-striped">
-    <thead>
-        <tr>
-            <th class="cell-stat">
-                <h2>Destinations</h2></th>
-            <th class="cell-stat text-center hidden-xs hidden-sm">Date</th>
-            <th class="cell-stat text-center">Comments</th>
-        </tr>
-    </thead>
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <div class="post-preview">
+        <h1 class="activity">Recent activity per topic</h1>{% if user.is_authenticated %}
+        <a href="{% url 'post_draft_list' %}" class="top-menu glyph-extra"><span class="glyphicon glyphicon-edit"></span><small> See my post drafts</small></a> {% else %}
+        <p class="login-text">Login to create or edit posts</p>{% endif %}
+    </div>
 
-    <tbody>
-        {% for post in d_posts %}
-        <tr>
-            <div class="post">
-                <td>
-                    <h1 class="post-title"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-                </td>
-                <td class="text-center hidden-xs hidden-sm">
-                    {{ post.published_date }}
-                </td>
-                <td class="text-center"><a href="{% url 'post_detail' pk=post.pk %}"> {{ post.approved_comments.count }}</a>
-            </div>
-        </tr>
-        {% endfor %}
-    </tbody>
+    <table class="table forum table-striped">
+        <thead>
+            <tr>
+                <th class="cell-stat tabwidt-title">
+                    <a href="{% url 'post_list_dest' %}"><h3 class="topic-title">Destinations</h3></a></th>
+                <th class="cell-stat tabwidt-date text-center hidden-xs hidden-sm">Date</th>
+                <th class="cell-stat tabwidt-comments text-center">Comments</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in d_posts %}
+            <tr>
+                <div class="post">
+                    <td>
+                        <h3 class="title-in-table"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
+                    </td>
+                    <td class="text-center hidden-xs hidden-sm">
+                        {{ post.published_date }}
+                    </td>
+                    <td class="text-center"> {{ post.comments.count }}
+                </div>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
-</table>
+    <ul class="pager">
+        <li class="next">
+            <a href="{% url 'post_list_dest' %}">See all &rarr;</a>
+        </li>
+    </ul>
 
-<ul class="pager">
-    <li class="next">
-        <a href="{% url 'post_list_dest' %}">See all &rarr;</a>
-    </li>
-</ul>
+    <table class="table forum table-striped">
+        <thead>
+            <tr>
+                <th class="cell-stat tabwidt-title">
+                    <a href="{% url 'post_list_prac' %}"><h3 class="topic-title">Practical</h3></a></th>
+                <th class="cell-stat tabwidt-date text-center hidden-xs hidden-sm">Date</th>
+                <th class="cell-stat tabwidt-comments text-center">Comments</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in p_posts %}
+            <tr>
+                <div class="post">
+                    <td>
+                        <h3 class="title-in-table"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
+                    </td>
+                    <td class="text-center hidden-xs hidden-sm">
+                        {{ post.published_date }}
+                    </td>
+                    <td class="text-center"> {{ post.comments.count }}
+                </div>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
-<table class="table forum table-striped">
-    <thead>
-        <tr>
-            <th class="cell-stat">
-                <h2>Practical</h2></th>
-            <th class="cell-stat text-center hidden-xs hidden-sm">Date</th>
-            <th class="cell-stat text-center">Comments</th>
-        </tr>
-    </thead>
+    <ul class="pager">
+        <li class="next">
+            <a href="{% url 'post_list_prac' %}">See all &rarr;</a>
+        </li>
+    </ul>
 
-    <tbody>
-        {% for post in p_posts %}
-        <tr>
-            <div class="post">
-                <td>
-                    <h1 class="post-title"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-                </td>
-                <td class="text-center hidden-xs hidden-sm">
-                    {{ post.published_date }}
-                </td>
-                <td class="text-center"><a href="{% url 'post_detail' pk=post.pk %}"> {{ post.approved_comments.count }}</a>
-            </div>
-        </tr>
-        {% endfor %}
-    </tbody>
+    <table class="table forum table-striped">
+        <thead>
+            <tr>
+                <th class="cell-stat tabwidt-title">
+                    <a href="{% url 'post_list_other' %}"><h3 class="topic-title">Other</h3></a></th>
+                <th class="cell-stat tabwidt-date text-center hidden-xs hidden-sm">Date</th>
+                <th class="cell-stat tabwidt-comments text-center">Comments</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in o_posts %}
+            <tr>
+                <div class="post">
+                    <td>
+                        <h3 class="title-in-table"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
+                    </td>
+                    <td class="text-center hidden-xs hidden-sm">
+                        {{ post.published_date }}
+                    </td>
+                    <td class="text-center"> {{ post.comments.count }}
+                </div>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
-</table>
+    <ul class="pager">
+        <li class="next">
+            <a href="{% url 'post_list_other' %}">See all &rarr;</a>
+        </li>
+    </ul>
 
-<ul class="pager">
-    <li class="next">
-        <a href="{% url 'post_list_prac' %}">See all &rarr;</a>
-    </li>
-</ul>
-
-<table class="table forum table-striped">
-    <thead>
-        <tr>
-            <th class="cell-stat">
-                <h2>Other</h2></th>
-            <th class="cell-stat text-center hidden-xs hidden-sm">Date</th>
-            <th class="cell-stat text-center">Comments</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        {% for post in o_posts %}
-        <tr>
-            <div class="post">
-                <td>
-                    <h1 class="post-title"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-                </td>
-                <td class="text-center hidden-xs hidden-sm">
-                    {{ post.published_date }}
-                </td>
-                <td class="text-center"><a href="{% url 'post_detail' pk=post.pk %}"> {{ post.approved_comments.count }}</a>
-            </div>
-        </tr>
-        {% endfor %}
-    </tbody>
-
-</table>
-
-<ul class="pager">
-    <li class="next">
-        <a href="{% url 'post_list_other' %}">See all &rarr;</a>
-    </li>
-</ul>
-
-<hr>
+    <hr>
 </div>
 
 {% endblock %}
