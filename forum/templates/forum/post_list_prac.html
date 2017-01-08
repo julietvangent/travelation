@@ -1,11 +1,20 @@
 {% extends 'forum/base.html' %} {% block content %}
 
+<div class="login-div" "post-preview">
+    {% if user.is_authenticated %}
+    <p class="login-text">Hello {{ user.username }} <small class="login-text">(<a href="{% url 'logout' %}">Log out</a>)</small></p>
+    {% else %}
+    <a href="{% url 'login' %}"><span class="glyphicon glyphicon-lock" style="margin-right: 10px"></span>
+    </a> <em>Not logged in</em> {% endif %}
+  </div>
+
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 <div class="post-preview">
     <h1>Practical</h1> {% if user.is_authenticated %}
     <a href="{% url 'prac_post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a> Create new topic in <em>Practical</em>
     <br>
-    <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a> See my post drafts {% else %}
-    <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>{% endif %}
+    <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a> See my post drafts {% else %}
+    <p class="login-text">Login to create or edit posts</p>{% endif %}
 </div>
 
 <table class="table forum table-striped">
@@ -41,5 +50,9 @@
         <a href="{% url 'post_list' %}">&larr; Back to homepage</a>
     </li>
 </ul>
+
+
+<hr>
+</div>
 
 {% endblock %}

@@ -9,10 +9,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>My WebApp - Under Construction</title>
+    <title>Travelation - Travel discussion board</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
 
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{% static 'css/forum.css' %}">
@@ -23,10 +23,6 @@
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-
-    <!-- rest -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 
 </head>
 
@@ -41,7 +37,7 @@
                   <span class="sr-only">Toggle navigation</span>
                   Menu <i class="fa fa-bars"></i>
               </button>
-                <a class="navbar-brand" href="{% url 'post_list' %}">Navigation</a>
+                <a class="navbar-brand" href="{% url 'post_list' %}">Travelation</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -66,6 +62,7 @@
         <!-- /.container -->
     </nav>
 
+    <!--header-->
     <header class="intro-header" style="background-image: url('http://fourfootprints.com/wp-content/uploads/2012/04/IMG_1037-Panorama-HDR-Akaroa.jpg')">
         <div class="container">
             <div class="row">
@@ -81,21 +78,10 @@
     </header>
 
     <!-- Main Content -->
-    {% if user.is_authenticated %}
-    <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-    <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
-    <p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
-    {% else %}
-    <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a> {% endif %}
-
-
-
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                {% block content %} {% endblock %}
-                <hr>
-            </div>
+            {% block content %} {% endblock %}
+
         </div>
     </div>
 
@@ -113,7 +99,6 @@
 
     <!-- jQuery -->
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-    <script src="{% static 'vendor/jquery/forum.js' %}"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>

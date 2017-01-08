@@ -1,5 +1,7 @@
 {% extends 'forum/base.html' %} {% block content %}
 
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
 <div class="post">
 
     {% if post.published_date %}
@@ -37,5 +39,8 @@
         <a href="{% url 'post_list' %}">&larr; Back to homepage</a>
     </li>
 </ul>
+
+<hr>
+</div>
 
 {% endblock %}
