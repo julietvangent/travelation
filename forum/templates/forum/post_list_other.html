@@ -2,7 +2,7 @@
 
 <div class="login-div" "post-preview">
     {% if user.is_authenticated %}
-    <p class="login-text">Hello {{ user.username }}<small class="login-text">(<a href="{% url 'logout' %}">Log out</a>)</small></p>
+    <span class="login-text">Hello {{ user.username }}<small class="login-text">(<a href="{% url 'logout' %}">Log out</a>)</small></span>
     {% else %}
     <a href="{% url 'login' %}"><span class="glyphicon glyphicon-lock" style="margin-right: 10px"></span></a><em>Not logged in</em> {% endif %}
 </div>
