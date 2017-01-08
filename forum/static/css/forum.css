@@ -17,7 +17,8 @@
 
 .login-div {
   text-align: right;
-  display: inline-flex;;
+  display: inline-flex;
+  float: right;
 }
 
 .login-text {
