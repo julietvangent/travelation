@@ -16,8 +16,9 @@
 }
 
 .login-div {
-  display: inline-flex;
-  align-self: flex-end;
+  background-color: #938492;
+  text-align: right;
+  display: inline-flex;;
 }
 
 .login-text {
